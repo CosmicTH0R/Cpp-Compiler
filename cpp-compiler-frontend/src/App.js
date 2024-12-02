@@ -32,22 +32,51 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ margin: '20px' }}>
-      <h1>C++ Compiler</h1>
-      <MonacoEditor
-        language="cpp"
-        value={code}
-        onChange={handleChange}
-        height="400px"
-        theme="vs-dark"
-      />
-      <div>
-        <button onClick={handleCompile} disabled={isCompiling} style={{ marginTop: '20px' }}>
+    <div className="App">
+      {/* Navbar */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        padding: '10px 20px',
+        backgroundColor: '#333',
+        color: '#fff'
+      }}>
+        <h2 style={{ margin: 0 }}>C++ Compiler</h2>
+        <button
+          onClick={handleCompile}
+          disabled={isCompiling}
+          style={{
+            backgroundColor: '#007BFF',
+            color: '#fff',
+            border: 'none',
+            padding: '10px 20px',
+            cursor: 'pointer',
+            fontSize: '16px',
+            borderRadius: '5px'
+          }}
+        >
           {isCompiling ? 'Compiling...' : 'Compile'}
         </button>
       </div>
-      <h2>Output</h2>
-      <pre style={{ background: '#f4f4f4', padding: '10px', borderRadius: '5px' }}>{output}</pre>
+
+      <div style={{ display: 'flex', margin: '20px' }}>
+        <div style={{ flex: 1, marginRight: '20px' }}>
+          <MonacoEditor
+            language="cpp"
+            value={code}
+            onChange={handleChange}
+            height="400px"
+            theme="vs-dark"
+          />
+        </div>
+        <div style={{ flex: 1 }}>
+          <h1>Terminal</h1>
+          <h2>Output</h2>
+          <pre style={{ background: '#f4f4f4', padding: '10px', borderRadius: '5px', minHeight: '400px' }}>
+            {output}
+          </pre>
+        </div>
+      </div>
     </div>
   );
 }
